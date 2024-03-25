@@ -1,5 +1,6 @@
 package com.example.recylerviewapp
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,6 +20,15 @@ class MahasiswaAdapter(private val mahasiswaList: List<Mahasiswa>) : RecyclerVie
         holder.gambar.setImageResource(mahasiswa.gambar)
         holder.nama.text = mahasiswa.nama
         holder.nim.text = mahasiswa.nim
+        holder.itemView.setOnClickListener {
+            val context = holder.itemView.context
+            val intent = Intent(context, DetailMahasiswa::class.java).apply {
+                putExtra("gambar", mahasiswa.gambar)
+                putExtra("nama", mahasiswa.nama)
+                putExtra("nim", mahasiswa.nim)
+            }
+            context.startActivity(intent)
+        }
     }
 
     override fun getItemCount(): Int {
